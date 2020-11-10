@@ -1,0 +1,25 @@
+<h2>Gerenciador de lembretes</h2>
+
+<mat-card>
+  <form (submit)="onAdiocionarLembrete(lembreteForm)" #lembreteForm="ngForm">
+  <mat-form-field>
+    <input required type="date" matInput placeholder="Data de cadastro" name="dataCadastro" ngModel #dataCadastro="ngModel"/>
+
+    <mat-error *ngIf="dataCadastro.invalid">Digite uma data válida</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input required type="date" matInput placeholder="Data prevista para entregar" name="dataEntrega" ngModel #dataEntrega="ngModel"/>
+
+    <mat-error *ngIf="dataEntrega.invalid">Digite uma data válida</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input required minlength="4" type="text" matInput placeholder="Atividade a ser realizada" name="atividade" ngModel #atividade="ngModel">
+
+    <mat-error *ngIf="atividade.invalid">Digite um nome válido</mat-error>
+  </mat-form-field>
+
+  <button color="accent" mat-raised-button>Inserir Lembrete</button>
+</form>
+</mat-card>

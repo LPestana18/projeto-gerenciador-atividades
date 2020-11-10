@@ -1,0 +1,15 @@
+<mat-accordion *ngIf="lembretes.length > 0">
+    <mat-expansion-panel *ngFor="let lembrete of lembretes">
+      <mat-expansion-panel-header>Nome: {{lembrete.atividade}}</mat-expansion-panel-header>
+      <p>Data de Cadastro: {{lembrete.dataCadastro}}</p>
+      <p>Data de Entrega: {{lembrete.dataEntrega}}</p>
+
+      <mat-action-row>
+        <button mat-button color="accent">EDITAR</button>
+        <button mat-button color="accent">REMOVER</button>
+      </mat-action-row>
+
+    </mat-expansion-panel>
+</mat-accordion>
+
+<p class="mat-body-1" style="text-align: center;" *ngIf="lembretes.length <= 0"> Nenhuma atividade cadatrada</p>
