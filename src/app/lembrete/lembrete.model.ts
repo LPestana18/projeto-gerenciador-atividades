@@ -1,5 +1,6 @@
 export interface Lembrete {
-  dataCadastro: string,
-  dataEntrega: string,
+  id: string;
+  dataCadastro: string
+  dataEntrega: string;
   atividade: string
 }

@@ -16,15 +16,19 @@ export class LembreteListaComponent implements OnInit, OnDestroy {
   constructor(public lembreteService: LembreteService) { }
 
   ngOnInit(): void {
-    this.lembretes = this.lembreteService.getLembretes();
+    this.lembreteService.getLembretes();
     this.lembretesSubscription = this.lembreteService
-      .getListaDeLembretesAtualizadaObservable()
-      .subscribe((lembretes: Lembrete[]) => {
-        this.lembretes = lembretes;
-      })
+    .getListaDeLembretesAtualizadaObservable()
+    .subscribe((lembretes: Lembrete[]) => {
+      this.lembretes = lembretes;
+    })
   }
 
   ngOnDestroy(): void {
     this.lembretesSubscription.unsubscribe();
+  }
+
+  onDelete(id: string) {
+    this.lembreteService.removerLembrete(id);
   }
 }
