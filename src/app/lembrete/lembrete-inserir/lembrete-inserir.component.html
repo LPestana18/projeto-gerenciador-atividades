@@ -1,7 +1,8 @@
 <h2>Gerenciador de lembretes</h2>
 
 <mat-card>
-  <form (submit)="onSalvarLembrete(lembreteForm)" #lembreteForm="ngForm">
+  <mat-spinner *ngIf="estaCarregando"></mat-spinner>
+  <form (submit)="onSalvarLembrete(lembreteForm)" *ngIf="!estaCarregando" #lembreteForm="ngForm">
   <mat-form-field>
     <input required type="date" matInput placeholder="Data de cadastro" name="dataCadastro" [ngModel]="lembrete?.dataCadastro" #dataCadastro="ngModel"/>
 

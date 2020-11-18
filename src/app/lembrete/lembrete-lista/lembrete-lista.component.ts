@@ -12,14 +12,17 @@ export class LembreteListaComponent implements OnInit, OnDestroy {
 
   lembretes: Lembrete[] = []
   private lembretesSubscription: Subscription;
+  public estaCarregando = false;
 
   constructor(public lembreteService: LembreteService) { }
 
   ngOnInit(): void {
+    this.estaCarregando = true;
     this.lembreteService.getLembretes();
     this.lembretesSubscription = this.lembreteService
     .getListaDeLembretesAtualizadaObservable()
     .subscribe((lembretes: Lembrete[]) => {
+      this.estaCarregando = false;
       this.lembretes = lembretes;
     })
   }

@@ -3,7 +3,7 @@ import { Lembrete } from './lembrete.model';
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { identifierModuleUrl, ThrowStmt } from '@angular/compiler';
+import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root'})
 export class LembreteService {
@@ -11,7 +11,7 @@ export class LembreteService {
   private lembretes: Lembrete[] = [];
   private listaLembretesAtualizada = new Subject<Lembrete[]>();
 
-  constructor(private HttpClient: HttpClient) {
+  constructor(private HttpClient: HttpClient, private router: Router) {
 
   }
 
@@ -54,6 +54,7 @@ export class LembreteService {
         lembrete.id = dados.id;
         this.lembretes.push(lembrete);
         this.listaLembretesAtualizada.next([...this.lembretes]);
+        this.router.navigate(['/']);
       }
     )
   }
@@ -76,6 +77,7 @@ export class LembreteService {
       copia[indice] = lembrete;
       this.lembretes = copia;
       this.listaLembretesAtualizada.next([...this.lembretes]);
+      this.router.navigate(['/'])
     }));
   }
 

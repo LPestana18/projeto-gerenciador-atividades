@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require ('mongoose');
+const lembreteRoutes = require('./rotas/lembretes');
 const Lembrete = require('./models/lembrete');
 
 const lembretes = [
@@ -36,67 +37,6 @@ app.use ((req, res, next) => {
   next();
   });
 
-app.get('/api/lembretes', (req, res, next) => {
-  Lembrete.find().then(documents => {
-    console.log(documents);
-    res.status(200).json({
-      mensagem: "Tudo OK",
-      lembretes: documents
-    });
-  })
-});
-
-app.post('/api/lembretes', (req, res, next) => {
-    const lembrete = new Lembrete({
-      dataCadastro: req.body.dataCadastro,
-      dataEntrega: req.body.dataEntrega,
-      atividade: req.body.atividade
-    })
-    lembrete.save().then(lembreteInserido => {
-      res.status(201).json({
-        mensagem: 'Lembrete inserido',
-        id: lembreteInserido._id
-      })
-    })
-});
-
-app.delete('/api/lembretes/:id', (req, res, next) => {
-  Lembrete.deleteOne({_id: req.params.id}).then((resultado) => {
-    console.log(resultado);
-    res.status(200).json({mensagem: "Lembrete removido"})
-  })
-})
-
-app.use('/api/lembretes', (req, res, next) => {
-  res.status(200).json({
-    mensagem: "Tudo OK",
-    lembretes: lembretes
-  });
-});
-
-app.put("/api/lembretes/:id", (req, res, next) => {
-  const lembrete = new Lembrete({
-    _id: req.params.id,
-    dataCadastro: req.params.dataCadastro,
-    dataEntrega: req.params.dataEntrega,
-    atividade: req.params.atividade
-  });
-  Lembrete.updateOne({_id: req.params.id}, lembrete)
-  .then((resultado) => {
-    console.log(resultado);
-  });
-  res.status(200).json({mensagem: 'Atualizaçãom realizada com sucesso!'})
-})
-
-app.get('/api/lembretes/:id', (req, res, next) => {
-  Lembrete.findById(req.params.id).then(lem => {
-    if(lem) {
-      res.status(200).json(lem);
-    }
-    else{
-      res.status(404).json({mensagem: "Lembrete não encontrado!"})
-    }
-  })
-})
+app.use('/api/lembretes',lembreteRoutes);
 
 module.exports = app;

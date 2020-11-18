@@ -17,13 +17,16 @@ export class LembreteInserirComponent implements OnInit{
   private modo: string = "criar";
   private idLembrete: string;
   public lembrete: Lembrete;
+  public estaCarregando: boolean = false;
 
   ngOnInit() {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if (paramMap.has("idLembrete")) {
         this.modo = "editar";
         this.idLembrete = paramMap.get("idLembrete");
+        this.estaCarregando = true;
         this.lembreteService.getLembrete(this.idLembrete).subscribe(dadosLem => {
+          this.estaCarregando = false;
           this.lembrete = {
             id: dadosLem._id,
             dataCadastro: dadosLem.dataCadastro,
@@ -46,6 +49,7 @@ export class LembreteInserirComponent implements OnInit{
     if(form.invalid) {
       return;
     }
+    this.estaCarregando = true;
     if(this.modo === "criar") {
       this.lembreteService.adicionarLembrete(
         form.value.dataCadastro,
