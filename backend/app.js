@@ -20,7 +20,7 @@ const lembretes = [
   }
 ]
 
-mongoose.connect('mongodb+srv://lucas:nw9i8Dmd10dHRXdz@cluster0.5m8t5.mongodb.net/app-mean?retryWrites=true&w=majority', {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect('mongodb+srv://admin:uE5mhlodEWfgSZzi@cluster0.5m8t5.mongodb.net/app-mean?retryWrites=true&w=majority', {useNewUrlParser: true, useUnifiedTopology: true})
 .then(() => {
   console.log("Conexão OK")
 }).catch(() =>{
