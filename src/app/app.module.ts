@@ -20,6 +20,10 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { LembreteService } from './lembrete/lembrete.service';
 import { AppRoutingModule } from './app-routing.module';
+import { LoginComponent } from './account/login/login.component';
+import { CreateAccountComponent } from './account/create-account/create-account.component';
+import { AuthenticationComponent } from './layout/authentication/authentication.component';
+import { HomeComponent } from './layout/home/home.component';
 
 
 @NgModule({
@@ -28,6 +32,10 @@ import { AppRoutingModule } from './app-routing.module';
     LembreteInserirComponent,
     CabecalhoComponent,
     LembreteListaComponent,
+    LoginComponent,
+    CreateAccountComponent,
+    AuthenticationComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

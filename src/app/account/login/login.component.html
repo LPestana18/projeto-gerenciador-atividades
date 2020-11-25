@@ -1,0 +1,27 @@
+<body>
+  <form class="box" action="" method="post" (submit)="onSubmit()">
+      <h1>Entrar</h1>
+
+      <input [(ngModel)]="login.email"
+        type="text"
+        placeholder="E-mail"
+        name="email"
+        required
+      />
+
+      <input [(ngModel)]="login.password"
+        type="password"
+        placeholder="Password"
+        name="password"
+        required
+      />
+
+      <input
+        type="submit"
+        value="Entrar"
+        name=""
+      />
+
+  </form>
+
+</body>
